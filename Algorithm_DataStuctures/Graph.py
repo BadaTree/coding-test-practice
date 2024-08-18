@@ -57,9 +57,9 @@ graph = [[],
 visited = [False] * 9
 visited_bfs = [False] * 9 
 
-DFS(graph,1,visited)
-print()
-BFS(graph,1,visited_bfs)
+# DFS(graph,1,visited)
+# print()
+# BFS(graph,1,visited_bfs)
 queue = deque([])
 queue.append(5)
 queue.append(2)
@@ -132,10 +132,10 @@ def Euclidean(a,b):
 # 재귀함수도 스택처럼 LIFO 나중에 실행된 함수부터 종료된다.
 
 
-# DFS (Depth-first Search), 스택 자료구조(혹은 재귀함수)를 이용
+# [1] DFS (Depth-first Search), 스택 자료구조(혹은 재귀함수)를 이용
 # 깊이 우선 탐색이라고 부르며 그래프에서 싶은 부분을 우선적으로 탐색하는 알고리즘이다.
 # 1. 탐색 시작 노드를 스택에 삽입하고, 방문 처리한다.
-# 2. 스택의 최상단의 노드에 방문하지 않은 인접 노드가 있다면, 그 노드를 스택에 삽입하고 방문 처리
+# 2. 스택의 최상단의 노드에 방문하지 않은 인접 노드가 있다면, 노드의 값이 가장 작은 '한 개'를 스택에 삽입하고 방문 처리
 #    스택의 최상단의 노드에 더이상 방문할 노드가 없다며, 최상단 노드를 꺼낸다.
 # 3. 더 이상 2번의 과정을 수행할 수 없을 때까지 반복한다.  
 
@@ -149,8 +149,7 @@ def dfs(graph, v, visited):
     for i in graph[v]:
         if not visited[i]:
             dfs(graph,i,visited)
- 
-# 각 노드가 방문된 정보를 표현 (1차원 리스트)            
+        
 graph = [
     [],
     [2,3,8],
@@ -166,10 +165,51 @@ graph = [
 visited = [False]* 9 #(노드의 값과 인덱스를 맞춰주기 위해 노드 수 + 1)
 
 # 정의된 DFS 함수 호출
-dfs(graph,1,visited)
+# dfs(graph,1,visited)
 
 
-# BFS 
+# [2] BFS (Breadth-First Search), Queue를 활용
+# 너비우선 탐색이라고도 부르며, 그래프에서 시작노드에서 가까운 노드부터 우선적으로 탐색하는 알고리즘
+# 1. 탐색 시작 노드를 큐에 삽입하고, 방문 처리를 합니다.
+# 2. 큐의 맨 앞 노드를 꺼낸 뒤, 해당 노드의 인접노드 중 방문하지 않은 노드를 '모두' 큐에 삽입하고 방문 처리합니다.
+# 3. 더 이상 2번의 과정을 수행할 수 없을 때까지 반복합니다.
+
+from collections import deque
+
+# BFS 메서드 정의
+def bfs (graph, start, visited):
+    # 큐 구현을 위해 deque 라이브러리 사용
+    queue = deque([start])
+    # 현재 노드를 방문 처리
+    visited[start] = True
+    # 큐가 빌 떄까지 반복
+    while queue:
+        # 큐에서 맨 앞의 노드를 꺼내 출력
+        v = queue.popleft()
+        print(v,end=' ')
+        # 해당 노드에 인접 노드 중 방문하지 않은 노드 '모두' 큐에 삽입
+        for i in graph[v]:
+            if not visited[i]:
+                queue.append(i)
+                visited[i] = True
+
+          
+graph = [
+    [],
+    [2,3,8],
+    [1,7],
+    [1,4,5],
+    [3,5],
+    [3,4],
+    [7],
+    [2,6,8],
+    [1,7]
+]
+# 각 노드가 방문된 정보를 표현 
+visited = [False]* 9 #(노드의 값과 인덱스를 맞춰주기 위해 노드 수 + 1)
+
+# 정의된 DFS 함수 호출
+bfs(graph,1,visited)
 
 # [ ] 저자 추천 문제
 # [1] 전력망을 둘로 나누기(level2, programmers)
@@ -183,21 +223,10 @@ dfs(graph,1,visited)
 # [1] 7576번: 토마토 (골드 5)
 # https://www.acmicpc.net/problem/7576
 
-@ -138,7 +230,7 @@ for _ in range(Case):
 
 # [1] 1,2,3 더하기 (실버3)
 # https://www.acmicpc.net/problem/9095
 
-'''
-import sys
-from itertools import product
-
-@ -161,7 +253,7 @@ for i in range(T):
-    print(case)
-            
-
-
-'''
 
 # [2] 가장 긴 바이토닉 부분 수열(골드5)
 # https://www.acmicpc.net/problem/11054
