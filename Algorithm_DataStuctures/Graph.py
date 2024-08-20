@@ -173,7 +173,7 @@ visited = [False]* 9 #(노드의 값과 인덱스를 맞춰주기 위해 노드 
 # 1. 탐색 시작 노드를 큐에 삽입하고, 방문 처리를 합니다.
 # 2. 큐의 맨 앞 노드를 꺼낸 뒤, 해당 노드의 인접노드 중 방문하지 않은 노드를 '모두' 큐에 삽입하고 방문 처리합니다.
 # 3. 더 이상 2번의 과정을 수행할 수 없을 때까지 반복합니다.
-
+'''
 from collections import deque
 
 # BFS 메서드 정의
@@ -210,13 +210,14 @@ visited = [False]* 9 #(노드의 값과 인덱스를 맞춰주기 위해 노드 
 
 # 정의된 DFS 함수 호출
 # bfs(graph,1,visited)
-
+'''
 # [ ] 이코테 저자 나동빈 추천 문제 
-# 음료수 얼려 먹기 :
+# https://www.youtube.com/watch?v=7C9RgOcvkvo&list=PLRx0vPvlEmdAghTr5mXQxGpHjWqSz0dgC&t=2s
+# 1. 음료수 얼려 먹기 :
 # 1. 값이 0인 노드에 방문하여 상하좌우 뚫려 있고 방문 하지 않은 노드를 방문
 # 2. 새롭게 방문한 노드에서 또 상하 좌우를 서치하며 연결된 모든 노드를 서치
 # 3. 더 이상 연결된 노드가 없을 때 ice +1 
-
+'''
 def DFS(x,y ,n,m,graph):
     # 그래프 범위를 넘어가면 바로 False
     if y < 0 or n-1 < y or x < 0 or m-1 < x:
@@ -237,7 +238,7 @@ def DFS(x,y ,n,m,graph):
 
 import sys
 
-input = sys.stdin.readlines()
+# input = sys.stdin.readlines()
 
 n,m = map(int,input[0].strip().split())
 ICE = 0
@@ -257,6 +258,54 @@ for y in range(n):
         if DFS(x,y ,n,m,graph):
             ICE += 1
 print(ICE)
+'''
+# 2. 미로 탈출
+ 
+# BFS 구현 
+def bfs(x,y):
+    # 큐 구현
+    queue = deque()
+    queue.append((x,y))
+    
+    #큐가 빌 때까지 반복하기
+    while queue :
+        x,y = queue.popleft()
+        # 현재 위치에서 4가지 방향으로의 위치 확인 
+        for i in range(4):
+            nx = x + dx[i]
+            ny = y + dy[i]
+            # 미로 찾기 공간을 벗어난 경우 무시 
+            if nx < 0 or nx >= n or ny < 0 or ny >= m :
+                continue
+            # 괴물 위치인 경우 무시
+            if graph[nx][ny] == 0 :
+                continue
+            # 해당 노드를 처음 방문하는 경우에만 최단 거리 기록 
+            if graph[nx][ny] == 1:
+                graph[nx][ny] = graph[x][y] + 1
+                queue.append((nx,ny))
+    
+    # 가장 오른쪽 아래까지의 최단 거리 반환
+    return graph[n-1][m-1]
+
+
+from collections import deque
+
+# N,M을 공백을 기준으로 구분하여 입력 받기
+n,m = map(int,input().split())
+# 2차원 리스트의 맵 정보 입력 받기
+graph = []
+for i in range(n):
+    graph.append(list(map(int,input())))
+    
+# 이동할 네 가지 방향 정의 (상, 하, 좌, 우)
+dx = [-1,1,0,0]
+dy = [0,0,-1,1]
+
+# BFS를 수행한 결과 출력
+print(bfs(0,0))
+        
+
 
 # [ ] 저자 추천 문제
 # [1] 전력망을 둘로 나누기(level2, programmers)
