@@ -209,7 +209,54 @@ graph = [
 visited = [False]* 9 #(노드의 값과 인덱스를 맞춰주기 위해 노드 수 + 1)
 
 # 정의된 DFS 함수 호출
-bfs(graph,1,visited)
+# bfs(graph,1,visited)
+
+# [ ] 이코테 저자 나동빈 추천 문제 
+# 음료수 얼려 먹기 :
+# 1. 값이 0인 노드에 방문하여 상하좌우 뚫려 있고 방문 하지 않은 노드를 방문
+# 2. 새롭게 방문한 노드에서 또 상하 좌우를 서치하며 연결된 모든 노드를 서치
+# 3. 더 이상 연결된 노드가 없을 때 ice +1 
+
+def DFS(x,y ,n,m,graph):
+    # 그래프 범위를 넘어가면 바로 False
+    if y < 0 or n-1 < y or x < 0 or m-1 < x:
+        return False
+    # 시작 위치에서 인접한 좌우상하 노드 전체 서치
+    if graph[y][x] == 0:
+        # 해당 노드 방문 처리
+        graph[y][x] = 1
+        # 상하좌우 인전 노드 확인, 리턴하지 않으므로 단순히 인접노드 방문 처리용
+        DFS(x-1,y ,n,m,graph)
+        DFS(x+1,y ,n,m,graph)
+        DFS(x,y-1 ,n,m,graph)
+        DFS(x,y+1 ,n,m,graph)
+        # 인접한 모든 노드를 모두 방문 했을 때 하나의 ICE 찾음의 의미 True 반환   
+        return True
+         
+    return False
+
+import sys
+
+input = sys.stdin.readlines()
+
+n,m = map(int,input[0].strip().split())
+ICE = 0
+
+# 그래프 생성
+graph = []
+for i in range(1,n+1):
+    graph.append(list(map(int,input[i].strip())))
+
+# 차례대로 노드를 방문해서 상하좌우 방문하지 않고, 값이 0인 노드 있는지 연결 확인
+# 연결된 노드가 있다면 0 -> 1로 방문처리하고, 해당 노드로 이동하여 상하좌우 확인
+
+for y in range(n):
+    for x in range(m):
+        # ICE 체크 기준 첫 시작 노드가 방문처리 되었나 ? + 1
+        # but 이어서 인전노드들의 재귀함수 반환값은 이용하지 않으므로 단순히 방문처리용
+        if DFS(x,y ,n,m,graph):
+            ICE += 1
+print(ICE)
 
 # [ ] 저자 추천 문제
 # [1] 전력망을 둘로 나누기(level2, programmers)
