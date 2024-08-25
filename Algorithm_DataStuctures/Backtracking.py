@@ -9,6 +9,25 @@
 # [ ] Backtracking 저자 추천 문제
 # Programmers, 피로도 level 2
 # https://school.programmers.co.kr/learn/courses/30/lessons/87946
+from itertools import permutations
+
+def solution(k, dungeons):
+    max_dungeons = 0
+    all_permutations = list(permutations(dungeons))
+    
+    for perm in all_permutations:
+        current_k = k
+        explored_count = 0
+        for dungeon in perm:
+            min_required, fatigue_cost = dungeon
+            if current_k >= min_required:
+                current_k -= fatigue_cost
+                explored_count += 1
+            else:
+                break
+        max_dungeons = max(max_dungeons, explored_count)
+    
+    return max_dungeons
 
 
 # Programmers, N-Queen, level2
