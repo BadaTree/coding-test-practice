@@ -7,6 +7,7 @@
 # [3] Backtracking N-Queen
 
 # [ ] Backtracking 저자 추천 문제
+
 # Programmers, 피로도 level 2
 # https://school.programmers.co.kr/learn/courses/30/lessons/87946
 from itertools import permutations
@@ -57,3 +58,38 @@ def solution(n):
 
 # Programmers, 양궁대회, level2
 # https://school.programmers.co.kr/learn/courses/30/lessons/92342
+
+def solution(n, info):
+    max_diff = 0
+    best_shot = [-1]
+
+    def backtrack(shots, idx, arrows_left):
+        nonlocal max_diff, best_shot
+        if idx == 11 or arrows_left == 0:
+            shots[-1] += arrows_left  # 남은 화살을 0점에 모두 사용
+            ryan_score, appeach_score = 0, 0
+
+            for i in range(11):
+                if shots[i] > info[i]:
+                    ryan_score += 10 - i
+                elif info[i] > 0:
+                    appeach_score += 10 - i
+
+            score_diff = ryan_score - appeach_score
+            if score_diff > 0:
+                if score_diff > max_diff or (score_diff == max_diff and shots > best_shot):
+                    max_diff = score_diff
+                    best_shot = shots[:]
+            shots[-1] -= arrows_left  # 남은 화살 초기화
+            return
+
+        if arrows_left > info[idx]:  # 현재 점수를 이길 수 있을 때
+            shots[idx] = info[idx] + 1
+            backtrack(shots, idx + 1, arrows_left - shots[idx])
+            shots[idx] = 0
+
+        # 현재 점수를 포기할 때
+        backtrack(shots, idx + 1, arrows_left)
+
+    backtrack([0] * 11, 0, n)
+    return best_shot
