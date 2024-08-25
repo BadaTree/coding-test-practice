@@ -211,6 +211,11 @@ visited = [False]* 9 #(노드의 값과 인덱스를 맞춰주기 위해 노드 
 # 정의된 DFS 함수 호출
 # bfs(graph,1,visited)
 '''
+
+# [3] 다익스타라 알고리즘 이해하기
+
+# [4] 밸만포드 알고리즘 이해하기 
+
 # [ ] 이코테 저자 나동빈 추천 문제 
 # https://www.youtube.com/watch?v=7C9RgOcvkvo&list=PLRx0vPvlEmdAghTr5mXQxGpHjWqSz0dgC&t=2s
 # 1. 음료수 얼려 먹기 :
