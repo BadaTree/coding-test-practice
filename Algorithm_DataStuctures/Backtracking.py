@@ -3,6 +3,30 @@
 # [1] Backtracking
 
 # [2] Backtracking 부분 합
+def promising(i,weight,total):
+    if ((weight + total >= W) and (weight == W or weight + w[i+1] <= W)):
+        return True
+    else:
+        return False
+
+def sum_of_subsets (i,weight,total):
+    n = len(w) -1 
+    if promising(i, weight, total):
+        if weight == W:
+            print(include[1: n+1])
+        else:
+            include[i+1] = True
+            sum_of_subsets(i+1,weight+w[i+1], total- w[i+1])
+            include[i+1] = False
+            sum_of_subsets(i+1, weight, total - w[i+1])
+
+n = 5
+W = 21
+w = [0,5,6,10,11,16]
+total = sum(w)
+include = [False]*(n+1)
+print(total)
+sum_of_subsets(0,0,total)
 
 # [3] Backtracking N-Queen
 
@@ -10,6 +34,7 @@
 
 # Programmers, 피로도 level 2
 # https://school.programmers.co.kr/learn/courses/30/lessons/87946
+'''
 from itertools import permutations
 
 def solution(k, dungeons):
@@ -29,10 +54,11 @@ def solution(k, dungeons):
         max_dungeons = max(max_dungeons, explored_count)
     
     return max_dungeons
-
+'''
 
 # Programmers, N-Queen, level2
 # https://school.programmers.co.kr/learn/courses/30/lessons/12952
+'''
 def solution(n):
     def is_safe(queens, row, col):
         for r in range(row):
@@ -54,11 +80,11 @@ def solution(n):
     
     queens = [-1] * n
     return solve(queens, 0)
-
+'''
 
 # Programmers, 양궁대회, level2
 # https://school.programmers.co.kr/learn/courses/30/lessons/92342
-
+'''
 def solution(n, info):
     max_diff = 0
     best_shot = [-1]
@@ -93,3 +119,4 @@ def solution(n, info):
 
     backtrack([0] * 11, 0, n)
     return best_shot
+'''
