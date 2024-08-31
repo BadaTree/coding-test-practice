@@ -243,7 +243,7 @@ visited = [False]* 9 #(노드의 값과 인덱스를 맞춰주기 위해 노드 
 # 구현 Tip (~ 15):
 # 단계마다 방문하지 않은 노드 중에서 최단 거리가 가장 짧은 노드를 선택하기 위해 
 # 매 단계마다 1차원 테이블의 모든 원소를 확인한다.
-
+'''
 import sys 
 input = sys.stdin.readline
 INF = int(1e9) # 무한을 의미하는 값으로 10억을 설정
@@ -305,6 +305,24 @@ for i in range(1,n+1):
     # 도달할 수 있는 경우 거리를 출력
     else:
         print(dijkstra[i])
+'''
+# [3] 힙 라이브러리 활용해서 다익스트라 구현하기 
+import heapq
+
+# 오름차순 힙 정렬(Heap Sort)
+def heapsort(iterable):
+    h = []
+    result = []
+    # 모든 원소를 파례대로 힙에 삽입
+    for vaule in iterable:
+        heapq.heappush(h,vaule)
+    # 힙에 삽입된 모든 원소를 차례대로 꺼내어 담기
+    for i in range(len(h)):
+        result.append(heapq.heappop(h))
+    return result
+
+result = heapsort([1,3,5,7,9,2,4,6,8,0])
+print(result)
 
 # [4] 플로이드 워셜 알고리즘 이해하기
 
