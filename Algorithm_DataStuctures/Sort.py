@@ -6,4 +6,17 @@
 # 예) 데이터가 적거나 많지만 범위가 한정되어있을때 정해진 알고리즘을 이용해 정렬한다.
 
 
+# [2] 선택 정렬 O(N^2)
+ # 처리되지 않은 데이터 중 가장 작은 데이터를 선택해서 맨 앞에 데이터와 바꾸는 것을 반복.
 
+array = [7,5,9,0,3,1,6,2,4,8]
+
+for i in range(len(array)):
+    min_index = i
+    for j in range(i+1,len(array)):
+        if array[min_index] > array[j]:
+            min_index = j
+            
+    array[min_index], array[i] = array[i], array[min_index] 
+    
+print(array)
