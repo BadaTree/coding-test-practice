@@ -44,13 +44,15 @@ print(array)
 
 # [4] 퀵 정렬 평균 O(NlogN), 최악의 경우: 이미 정렬된 배열  O(N^2)
 # 일반적인 상황에서 가장 많이 사용되는 정렬 알고리즘 중 하나.
-# 재귀로 동작을 반복하며, 정렬 범위를 좁혀가는 방법
 # 피벗을 기준으로 데이터 묶음을 나누는 작업을 분할(Divide)이라고 합니다.
+# 피벗을 기준으로 작은 값, 큰 값을 분리해 나가면서 재귀적으로 정렬. 
+# 그 분리 묶음원소가 작아져 한 개 이하가 되었을 때 정렬 완료를 의미
 # 기준 데이터를 설정하고, 그 기준보다 큰 데이터와 작은 데이터의 위치를 바꾸는 방법
 # 병합 정렬과 더불어 대부분의 프로그래밍 언어의 정렬 라이브러리 근간이 되는 알고리즘
 # 기본적인 퀵 정렬은 첫 번째 데이터를 기준 데이터로 설정하고 시작한다.
 
 # 일반적인 방식
+'''
 array = [5,7,9,0,3,1,6,2,4,8]
 
 def quick_sort(array, start, end):
@@ -79,3 +81,23 @@ def quick_sort(array, start, end):
 
 quick_sort(array, 0 , len(array)-1)
 print(array)
+'''
+
+# 파이썬의 장점을 살린 방법
+array = [5,7,9,0,3,1,6,2,4,8]
+
+def quick_sort(array):
+    # 리스트가 하나 이하의 원소만 담고 있다면 종료 (= 해당 영역 정렬 완료)
+    if len(array)<=1:
+        return array
+    
+    pivot = array[0] # 피벗은 첫 번째 원소
+    tail = array[1:] # 피벗을 제외한 리스트 
+    
+    left_array = [x for x in tail if x <= pivot] # 분할된 왼쪽 부분
+    right_array = [x for x in tail if x > pivot] # 분할된 오른쪽 부분
+
+    # 분할 이후 왼쪽 부분과 오른쪽 부분에서 각각 정렬 수행하고, 전체 리스트 반환
+    return quick_sort(left_array)+ [pivot] + quick_sort(right_array)
+
+print(quick_sort(array))
