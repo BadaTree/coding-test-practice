@@ -1,4 +1,5 @@
 # [ ] Sort
+# https://www.youtube.com/watch?v=KGyK-pNvWos&t=949s
 
 # [1] 정렬이란?
 # 데이터를 특정한 기준에 따하 순서대로 나열하는 것을 의미.
