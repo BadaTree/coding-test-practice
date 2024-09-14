@@ -105,12 +105,14 @@ def quick_sort(array):
 print(quick_sort(array))
 '''
 
-# [5] 계수 정렬 
+# [5] 계수 정렬 O(N+K)
+# 계수 정렬은 동일한 값을 가지는 데이터가 여러 개 등장할 때 효과적으로 사용가능!
+
 # 특정한 조건이 부합할 때만 사용할 수 있지만 매우 빠르게 동작하는 정렬 알고리즘.
 # 계수 정렬은 데이터의 크기 범위가 제한되어 정수 형태로 표현할 수 있을 때 사용 가능하다.
 # 데이터의 개수가 N, 데이터(양수) 중 최댓값이 K일 때 최악의 경우에도 수행 시간 O(N+K)를 보장한다.
 # 인덱스 : 데이터의 값, 값: 데이터의 빈도 수 
-
+'''
 # 모든 원소의 값이 0보다 크거나 같다고 가정
 array = [7, 5, 9, 0, 3, 1, 6, 2, 9, 1, 4, 8, 0, 5, 2 ]
 # 모든 범위를 포함하는 리스트 선언 (모든 값은 0으로 초기화)
@@ -123,3 +125,50 @@ for i in array:
 for i in range(len(count_list)): # 리스트에 기록된 정렬 정보 확인
     for j in range(count_list[i]):
         print(i, end=' ' ) # 띄어쓰기를 구분으로 등장한 횟수만큼 인덱스 출력 
+'''
+   
+# [ ] 선택 정려과 기본 정렬 라이브러리 수행 시간 비교
+
+from random import randint
+import time 
+
+# 배열에 10,000개의 정수를 삽입 
+array = []
+for _ in range(10000):
+    # 1부터 100사이의 랜덤한 정수 
+    array.append(randint(1,100))
+    
+# 선택 정렬 프로그램 성능 측정
+start_time = time.time()
+
+# 선택 정렬 프로그램 소스 코드
+for i in range(len(array)):
+    min_index = i # 가장 작은 원소의 인덱스
+    for j in range(i+1, len(array)):
+        if array[min_index] > array[j]:
+            min_index = j
+    array[i], array[min_index] = array[min_index], array[i]
+    
+# 측정 종료
+end_time = time.time()
+# 수행 시간 출력
+print('선택 정렬 성능 측정:', end_time - start_time)
+    
+# 배열에 10,000개의 정수를 삽입 
+array = []
+for _ in range(10000):
+    # 1부터 100사이의 랜덤한 정수 
+    array.append(randint(1,100))
+    
+# 기본 정렬 프로그램 성능 측정
+start_time = time.time()
+
+# 기본 정렬 라이브러리 사용
+array.sort()
+
+# 측정 종료
+end_time = time.time()
+
+# 수행 시간 출력 
+print("기본 정렬 라이브러리 성능 측정:",end_time-start_time)
+
