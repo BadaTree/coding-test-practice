@@ -128,7 +128,7 @@ for i in range(len(count_list)): # 리스트에 기록된 정렬 정보 확인
 '''
    
 # [ ] 선택 정려과 기본 정렬 라이브러리 수행 시간 비교
-
+'''
 from random import randint
 import time 
 
@@ -171,4 +171,45 @@ end_time = time.time()
 
 # 수행 시간 출력 
 print("기본 정렬 라이브러리 성능 측정:",end_time-start_time)
+ '''
+# [ ] sort 기본 문제 풀이하기 
+# A는 최소부터 B는 최대부터 바꿔치기하기
 
+# quick 정렬 정의
+def quick_sort (array):
+    if len(array) <=1:
+        return array
+    
+    pivot = array[0]
+    array_ = array[1:]
+    
+    left_array = [i for i in array_ if pivot > i]
+    right_array = [i for i in array_ if pivot < i]
+    
+    return quick_sort(left_array) + [pivot] + quick_sort(right_array)
+
+# 계수정렬 정의
+def sorted(array):
+    answer = []
+    temp_array = [0]*(max(array)+1)
+    
+    for i in array:
+        temp_array[i] += 1
+        
+    for i in range(len(temp_array)):
+        for j in range(temp_array[i]):
+            answer.append(i)
+    return answer
+
+N, K = map(int,input().split())
+A_arr = list(map(int,input().split()))
+B_arr = list(map(int,input().split()))
+
+# A,B 정렬
+A_arr = sorted(A_arr)
+B_arr = sorted(B_arr)
+
+for i in range(K):
+    A_arr[i],B_arr[N-i-1] = B_arr[N-i-1],A_arr[i]
+    
+print(sum(A_arr))
