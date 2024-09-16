@@ -174,6 +174,7 @@ print("기본 정렬 라이브러리 성능 측정:",end_time-start_time)
  '''
 # [ ] sort 기본 문제 풀이하기 
 # A는 최소부터 B는 최대부터 바꿔치기하기
+# a의 최소값이 b의 최대값보다 큰 경우 교체시 a합이 더 작아지므로 교체를 멈춰야함 
 
 # quick 정렬 정의
 def quick_sort (array):
@@ -204,6 +205,8 @@ def sorted(array):
 N, K = map(int,input().split())
 A_arr = list(map(int,input().split()))
 B_arr = list(map(int,input().split()))
+a = A_arr
+b = B_arr
 
 # A,B 정렬
 A_arr = sorted(A_arr)
@@ -212,4 +215,17 @@ B_arr = sorted(B_arr)
 for i in range(K):
     A_arr[i],B_arr[N-i-1] = B_arr[N-i-1],A_arr[i]
     
-print(sum(A_arr))
+print("바다 풀이 답 :",sum(A_arr))
+
+# 정답 풀이
+a.sort() # a는 오름차순 정렬
+b.sort(reverse=True)# b는 내림차순 정렬
+
+for i in range(K): # K번 바꿔치기 수행
+    if a[i] < b[i]:
+        a[i],b[i] = b[i], a[i]
+    # a의 최소값이 b의 최대값보다 큰 경우 교체시 a합이 더 작아지므로 교체를 멈춰야함 
+    else: ## a의 최소값이 b의 최대값보다 작거나 같으면 합이 더 작아지거나 의미없음 
+        break 
+    
+print("정답 풀이: ",sum(a))
