@@ -18,7 +18,7 @@
 # 피보나치 수열처럼 점화식으로 표현 가능할 때는 간단히 점화식으로 풀이할 수 있다 !!
 
 # 재귀함수로 피보나치 함수 구현 
-
+'''
 import time 
 
 def fibo(n):
@@ -32,7 +32,7 @@ end_time = time.time()
 
 print(f"재귀함수 수행시간 : {end_time - start_time}")
 
-
+'''
 # NOTE: 피보나치 함수를 재귀함수로 표현했을 때 문제 
 # 단순 재귀 함수로 피보나치 수열을 해결하면 지수 시간 복잡도를 가지게 된다.
 # 즉, n이 조금만 커져도 복잡도가 기하급수적으로 커짐 
@@ -65,7 +65,7 @@ print(f"재귀함수 수행시간 : {end_time - start_time}")
 # 즉, 한 번된 결과를 담아두기만 한다면 '메모이제이션 기법을 활용했다, 캐시를 사용했다'고 표현함
 
 # [1] 탑다운 (메모이제이션)
-
+'''
 import time
 
 D = [0]*100 # 계산된 값을 저장하는(메모이제이션을 위한) 리스트 
@@ -83,3 +83,33 @@ print(fibo(40))
 eend_time = time.time()
 
 print(f'탑다운 수행시간: {eend_time-sstart_time}')
+'''
+# 일반 재귀함수 방식과 탑다운 다이나믹 방식 연산 시간 비교 
+import time
+# 일반 재귀함수 
+def re_fibo(n):
+    if n == 1 or n ==2 :
+        return 1
+    return re_fibo(n-1) + re_fibo(n-2)
+    
+# 탑다운 방식
+D = [0]*100
+def fibo(n):
+    if n ==1 or n==2 :
+        return 1
+    if D[n] != 0:
+        return D[n]
+    D[n] = fibo(n-1) + fibo(n-2)
+    
+    return D[n]
+
+start1 = time.time()
+re_fibo(45)
+end1 = time.time()
+print(f"재귀: {end1-start1}")
+
+start2 = time.time()
+fibo(45)
+end2 = time.time()
+print(f"다이나믹: {end2-start2}")
+
