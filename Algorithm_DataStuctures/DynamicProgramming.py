@@ -104,12 +104,12 @@ def fibo(n):
     return D[n]
 
 start1 = time.time()
-re_fibo(45)
+re_fibo(40)
 end1 = time.time()
-print(f"재귀: {end1-start1}")
+print(f"재귀: {end1-start1}s")
 
 start2 = time.time()
-fibo(45)
+fibo(40)
 end2 = time.time()
-print(f"다이나믹: {end2-start2}")
+print(f"다이나믹: {end2-start2}s")
 
