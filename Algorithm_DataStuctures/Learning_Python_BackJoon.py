@@ -1,5 +1,7 @@
-# 1시간 : 3600 1분 60 
 
+# [ ] BACKJOON 2530 
+
+# [1]
 clock = list(map(int,input().split(' ')))
 T = int(input())
 
@@ -22,3 +24,13 @@ if clock[0]>= 24 :
 # 23시 59분 59초     
 
 print(clock)
+
+# [2]
+current_time = list(map(int, input().split()))
+cooking_duration = int(input())
+
+current_time_in_seconds = (current_time[0] * 3600) + (current_time[1] * 60) + current_time[2]
+
+total_seconds = current_time_in_seconds + cooking_duration
+
+print((total_seconds // 3600) % 24, (total_seconds % 3600) // 60, (total_seconds % 3600) % 60)
