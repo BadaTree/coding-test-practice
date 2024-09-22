@@ -148,6 +148,9 @@ print(D[n])
 # 일단 재귀함수로 비효율적인 완전탐색 풀이를 작성한 다음, 메모이제이션 방식을 적용하는 것도 방법 !!
 
 # [ ] <문제> 개미전사 
+'''
+# 1칸 전의 누적합과 두칸 전의 누적합 + 현재 위치 합을 골라가면서 계산!
+
 # 정수 N을 입력 받기
 N = int(input())
 # 모든 식량 정보 입력 받기
@@ -164,4 +167,19 @@ for i in range(2,n):
     
 # 계산된 결과 출력
 print(d[n-1])
+'''
+# 바다 풀이 
+
+N = int(input())
+array = list(map(int, input().split(' ')))
+
+d = [0]* N
+d[0] = array[0]
+d[1] = max(array[0],array[1])
+
+for i in range(2, N):
+   d[i] = max(d[i-1],d[i-2]+array[i])
+
+print(d[N-1]) 
+
 
