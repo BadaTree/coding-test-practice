@@ -1,5 +1,7 @@
 # [ ] Dynamic Programming
 # https://youtu.be/5Lu34WIx2Us?si=ezrPX_DjqsfO6M94
+# https://www.youtube.com/watch?v=_K2WH4VhdkQ
+
 
 # [ ] 다이나믹 프로그래밍이란?
 # 한 번 해결한 문제를 다시 해결하지 않아 시간 복잡도를 획기적으로 줄이는 것이 포인트 !
@@ -206,3 +208,24 @@ for i in range(2,x+1):
         d[i] = min(d[i],d[i//5]+1)
 
 print(d[x])
+
+# [ ] 효율적인 화폐 구성
+
+n,m = map(int,input().split())
+array = []
+
+for i in range(n):
+    array.append(int(input()))
+    
+d = [1001] + (m+1)
+
+d[0] = 0
+for i in range(n):
+    for j in range(array[i], m +1):
+        if d[j-array[i]] != 1001:
+            d[j] = min(d[j], d[j-array[i]]+1)
+
+if d[m] == 1001:
+    print(-1)
+else:
+    print(d[m])
