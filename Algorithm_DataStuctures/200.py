@@ -143,4 +143,3 @@ while queue:
 
 # 결과 출력
 print('<' + ', '.join(map(str, result)) + '>')  
- 
