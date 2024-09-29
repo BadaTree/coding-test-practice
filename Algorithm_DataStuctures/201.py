@@ -35,8 +35,11 @@ if word:
     result.extend(word[::-1])
 
 print(''.join(result))
-# [2] 쇠막대기
+# [2] 쇠막대기 (실버2)
+
 
 # [3] 오큰 수 
 
 # [4] 오등큰 수
+
+
