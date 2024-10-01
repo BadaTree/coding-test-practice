@@ -127,6 +127,14 @@ sieve_of_eratosthenes(M, N)
 # [6] 골드바흐의 추측
 
 # [7] 팩토리얼Add
+'''
+N = int(input())
+result = 1
+
+for i in range(1,N+1):
+    result *= i
+print(result)
+'''
 
 # [8] 팩토리얼 0의 개수
 
