@@ -99,7 +99,7 @@ for num in nums:
 
 print(count)  # 최종 소수 개수 출력
 '''
-
+'''
 import sys
 import math
 
@@ -121,10 +121,10 @@ def sieve_of_eratosthenes(M, N):
 # 입력 처리
 M, N = map(int, sys.stdin.readline().split())
 sieve_of_eratosthenes(M, N)
-
-
+'''
 
 # [6] 골드바흐의 추측
+
 
 # [7] 팩토리얼Add
 '''
@@ -137,7 +137,23 @@ print(result)
 '''
 
 # [8] 팩토리얼 0의 개수
+N = int(input())
+result = 1
 
+for i in range(1,N+1):
+    result *= i
+
+# 문자열로 변환
+str_result = str(result)
+
+cnt = 0
+# 역순으로 출력
+for i in range(len(str_result) - 1, -1, -1):
+    if str_result[i] != '0' :
+        break
+    else :
+        cnt += 1
+print(cnt)
 # [9] 조합 0의 개수
 
 # [ ] 301 수학
