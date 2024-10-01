@@ -154,11 +154,17 @@ for i in range(len(str_result) - 1, -1, -1):
     else :
         cnt += 1
 print(cnt)
+
 # [9] 조합 0의 개수
 
 # [ ] 301 수학
 
 # [1] GCD 합
+import sys
+
+input = sys.stdin.readlines()
+N = int(input[0])
+
 
 # [2] 숨박꼭질 6
 
