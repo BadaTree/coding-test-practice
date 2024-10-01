@@ -58,6 +58,7 @@ for i in range(N):
 '''
 
 # [4] 소수 찾기
+'''
 N = int(input())
 nums = list(map(int,input().split()))
 
@@ -76,9 +77,10 @@ for num in nums :
             count += 1     
         
 print(count)
-# GPT 풀이
+'''
 
 # [5] 소수 구하기
+'''
 N = int(input())  # 입력받은 수의 개수
 nums = list(map(int, input().split()))  # 숫자 리스트
 
@@ -96,6 +98,31 @@ for num in nums:
         count += 1
 
 print(count)  # 최종 소수 개수 출력
+'''
+
+import sys
+import math
+
+def sieve_of_eratosthenes(M, N):
+    is_prime = [True] * (N + 1)
+    is_prime[0] = is_prime[1] = False  # 0과 1은 소수가 아님
+
+    # 에라토스테네스의 체 알고리즘
+    for i in range(2, int(math.sqrt(N)) + 1):
+        if is_prime[i]:
+            for j in range(i * i, N + 1, i):
+                is_prime[j] = False
+
+    # M 이상 N 이하의 소수 출력
+    for i in range(M, N + 1):
+        if is_prime[i]:
+            print(i)
+
+# 입력 처리
+M, N = map(int, sys.stdin.readline().split())
+sieve_of_eratosthenes(M, N)
+
+
 
 # [6] 골드바흐의 추측
 
