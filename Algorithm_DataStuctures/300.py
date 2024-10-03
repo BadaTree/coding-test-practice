@@ -99,7 +99,7 @@ for num in nums:
 
 print(count)  # 최종 소수 개수 출력
 '''
-
+'''
 # 에라테라토스의 체
 # https://velog.io/@marchfirst01/%EC%97%90%EB%9D%BC%ED%86%A0%EC%8A%A4%ED%85%8C%EB%84%A4%EC%8A%A4%EC%9D%98-%EC%B2%B4-%ED%8C%8C%EC%9D%B4%EC%8D%AC
 M,N = map(int,input().split(' '))
@@ -116,7 +116,7 @@ for i in range(2,int(N**0.5) + 1):
 for i in range(M,N+1):
     if nums[i]:
         print(i)
-
+'''
 
 
 # [6] 골드바흐의 추측
@@ -133,6 +133,7 @@ print(result)
 '''
 
 # [8] 팩토리얼 0의 개수
+'''
 N = int(input())
 result = 1
 
@@ -150,21 +151,25 @@ for i in range(len(str_result) - 1, -1, -1):
     else :
         cnt += 1
 print(cnt)
-
+'''
 # [9] 조합 0의 개수
 
 # [ ] 301 수학
 
 # [1] GCD 합
-import sys
-
-input = sys.stdin.readlines()
-N = int(input[0])
 
 
 # [2] 숨박꼭질 6
 
 # [3] 2진수 8진수
+twonum = input()
+twonum = twonum.zfill((len(twonum)+2)//3*3)
+result = ''
+
+for i in range(0, len(twonum),3):
+    result += str(int(twonum[i])*4+int(twonum[i+1])*2+int(twonum[i+2])*1)
+print(result)
+
 
 # [4] 8진수 2진수
 
