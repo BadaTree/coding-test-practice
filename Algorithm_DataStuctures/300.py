@@ -99,29 +99,25 @@ for num in nums:
 
 print(count)  # 최종 소수 개수 출력
 '''
-'''
-import sys
-import math
 
-def sieve_of_eratosthenes(M, N):
-    is_prime = [True] * (N + 1)
-    is_prime[0] = is_prime[1] = False  # 0과 1은 소수가 아님
+# 에라테라토스의 체
+# https://velog.io/@marchfirst01/%EC%97%90%EB%9D%BC%ED%86%A0%EC%8A%A4%ED%85%8C%EB%84%A4%EC%8A%A4%EC%9D%98-%EC%B2%B4-%ED%8C%8C%EC%9D%B4%EC%8D%AC
+M,N = map(int,input().split(' '))
+nums = [True for i in range(N+1)]
+# nums [0]= nums[1] = False
 
-    # 에라토스테네스의 체 알고리즘
-    for i in range(2, int(math.sqrt(N)) + 1):
-        if is_prime[i]:
-            for j in range(i * i, N + 1, i):
-                is_prime[j] = False
+for i in range(2,int(N**0.5) + 1):
+    if nums[i]:
+        j= 2
+        while i*j <= N:
+            nums[i*j] = False
+            j+=1
 
-    # M 이상 N 이하의 소수 출력
-    for i in range(M, N + 1):
-        if is_prime[i]:
-            print(i)
+for i in range(M,N+1):
+    if nums[i]:
+        print(i)
 
-# 입력 처리
-M, N = map(int, sys.stdin.readline().split())
-sieve_of_eratosthenes(M, N)
-'''
+
 
 # [6] 골드바흐의 추측
 
