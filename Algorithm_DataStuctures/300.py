@@ -155,13 +155,83 @@ print(cnt)
 # [9] 조합 0의 개수
 
 # [ ] 301 수학
+# [1] GCD의 합
 
-# [1] GCD 합
+def GCD(a, b):
+    while b != 0:
+        a, b = b, a % b  # 유클리드 알고리즘
+    return a
+
+import sys
+
+input = sys.stdin.readlines()
+N = int(input[0])  # 테스트 케이스의 수
+
+for i in range(1, N + 1):
+    nums = list(map(int, input[i].split()))  # 각 테스트 케이스를 리스트로 변환
+    n = nums[0]  # 수의 개수
+    result = 0
+    
+    # GCD 합을 구하기 위해 모든 쌍을 순회
+    for j in range(1, n ):  # nums[1]부터 시작
+        for r in range(j + 1, n + 1):  # j+1부터 시작
+            result += GCD(nums[j], nums[r])  # 실제 숫자로 GCD 계산
+            
+    print(result)  # 결과 출력
+
+# ** GPT **
+
+def GCD(a, b):
+    while b != 0:
+        a, b = b, a % b
+    return a
+
+import sys
+from collections import defaultdict
+
+input = sys.stdin.readlines()
+T = int(input[0])  # 테스트 케이스 수
+
+for i in range(1, T + 1):
+    nums = list(map(int, input[i].split()))
+    n = nums[0]
+    values = nums[1:]
+    
+    # GCD의 합을 계산할 변수
+    result = 0
+    
+    # 각 수의 카운트를 저장하는 딕셔너리
+    count = defaultdict(int)
+    
+    # 각 수를 카운트
+    for num in values:
+        count[num] += 1
+        
+    # 최대 수를 구하고 반복
+    max_value = max(values)
+    
+    # k는 가능한 GCD
+    for k in range(1, max_value + 1):
+        # k의 배수의 수를 세기
+        total_count = 0
+        
+        for multiple in range(k, max_value + 1, k):
+            total_count += count[multiple]
+        
+        # 만약 total_count가 2 이상이라면 GCD(k) 쌍의 수를 구함
+        if total_count > 1:
+            # 총 쌍의 수를 구함
+            pairs_count = total_count * (total_count - 1) // 2
+            result += k * pairs_count
+    
+    print(result)
+
 
 
 # [2] 숨박꼭질 6
 
 # [3] 2진수 8진수
+'''
 twonum = input()
 twonum = twonum.zfill((len(twonum)+2)//3*3)
 result = ''
@@ -169,10 +239,36 @@ result = ''
 for i in range(0, len(twonum),3):
     result += str(int(twonum[i])*4+int(twonum[i+1])*2+int(twonum[i+2])*1)
 print(result)
-
+'''
 
 # [4] 8진수 2진수
+'''
+import time
 
+num = input()
+result = []
+start_1 = time.time()
+for n in num:
+   result.append(format(int(n),'03b'))
+print(''.join(result).lstrip('0')) 
+
+#***** GPT ******
+
+end_1 = time.time()
+
+num = input().strip()  # 입력에서 공백 제거
+result = ''
+start_2 = time.time()
+# 각 8진수 자릿수를 3자리 2진수로 변환
+for n in num:
+    result += format(int(n), '03b')  # 8진수 자릿수를 3자리 2진수로 변환
+
+# 0인 경우를 제외하고 첫 번째 1이 나오는 부분부터 출력
+print(result.lstrip('0'))  # 왼쪽의 0을 모두 제거하고 출력
+end_2 = time.time()
+
+print({float(end_1-start_1)},{float(end_2-start_2)})
+'''
 # [5] -2진수
 
 # [6] 골드바흐 파티션
