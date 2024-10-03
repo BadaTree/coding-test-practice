@@ -156,7 +156,7 @@ print(cnt)
 
 # [ ] 301 수학
 # [1] GCD의 합
-
+'''
 def GCD(a, b):
     while b != 0:
         a, b = b, a % b  # 유클리드 알고리즘
@@ -226,7 +226,7 @@ for i in range(1, T + 1):
     
     print(result)
 
-
+'''
 
 # [2] 숨박꼭질 6
 
@@ -270,5 +270,25 @@ end_2 = time.time()
 print({float(end_1-start_1)},{float(end_2-start_2)})
 '''
 # [5] -2진수
+def to_negabinary(n):
+    if n == 0:
+        return "0"
+
+    negabinary = []
+    while n != 0:
+        n, remainder = divmod(n, -2)
+        if remainder < 0:
+            remainder += 2
+            n += 1
+        negabinary.append(str(remainder))
+
+    return ''.join(reversed(negabinary))
+
+# 입력 받기
+N = int(input())
+result = to_negabinary(N)
+print(result)
+
+
 
 # [6] 골드바흐 파티션
