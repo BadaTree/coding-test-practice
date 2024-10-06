@@ -23,7 +23,7 @@ def solution(numbers, target):
 # return 최단거리
 # 종료 조건 : 상대팀 방문 / 더 이상 이동할 곳이 없을 때
 
-# DFS 활용한 코드
+# ***** DFS 활용한 코드 *****
 # 종료조건, 불가능 좌표 조건(맵을 벗어나거나 0인 좌표), 이동 조건으로 분리
 # 방문한 좌표는 0으로 바꿔주고 다시 1로  
 def DFS(maps, n, m, count, x, y):
@@ -70,7 +70,40 @@ def solution(maps):
     return answer if answer != 100000 else -1  # 불가능할 경우 -1 반환
 
 
+# ***** BFS 활용한 코드 *****
+from collections import deque
 
+def solution(maps):
+    # n: 세로 크기, m: 가로 크기
+    n, m = len(maps), len(maps[0])
+    
+    # 방향 벡터 (상, 하, 좌, 우)
+    directions = [(-1, 0), (1, 0), (0, -1), (0, 1)]
+    
+    # BFS 구현을 위한 큐
+    queue = deque([(0, 0, 1)])  # 시작 좌표 (0, 0)과 시작 거리 1
+    
+    # 방문한 곳은 0으로 바꿔서 다시 방문하지 않게 처리
+    maps[0][0] = 0
+    
+    while queue:
+        x, y, dist = queue.popleft()
+        
+        # 목표 지점에 도착한 경우
+        if x == n - 1 and y == m - 1:
+            return dist
+        
+        # 4방향 탐색
+        for dx, dy in directions:
+            nx, ny = x + dx, y + dy
+            
+            # 맵 안에 있고 벽이 아닌 경우
+            if 0 <= nx < n and 0 <= ny < m and maps[nx][ny] == 1:
+                maps[nx][ny] = 0  # 방문 처리
+                queue.append((nx, ny, dist + 1))  # 큐에 다음 위치와 거리를 저장
+    
+    # 목표 지점에 도달할 수 없는 경우
+    return -1
 
 
 # 2️⃣ 해시
