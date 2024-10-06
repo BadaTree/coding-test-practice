@@ -3,24 +3,21 @@
 # 종료 시점 : numbers가 끝날 때 
 # return +1 : 종료 시점에서 타겟의 값과 같을 때.
 
-def DFS (numbers, target,idx, sum_idx):
-    if idx == len(numbers): # 모든 수 연산 끝날 때
+def DFS(numbers, target, idx, sum_idx):
+    if idx == len(numbers):
         if sum_idx == target:
             return 1
-        else:
+        else :
             return 0
     else:
-        count = 0 
-        count += DFS (numbers, target,idx+1, sum_idx+numbers[idx])
-        count += DFS (numbers, target,idx+1, sum_idx-numbers[idx])
+        count = 0
+        count += DFS(numbers, target, idx+1, sum_idx + numbers[idx])
+        count += DFS(numbers, target, idx+1, sum_idx - numbers[idx])
         return count
-
 def solution(numbers, target):
-    sol_count = 0
-    sol_count = DFS (numbers, target,0, 0)
-    print(sol_count)
-    return DFS (numbers, target,0, 0)
-solution([4, 1, 2, 1],2)
+    answer = 0
+    answer = DFS(numbers, target,0,0)
+    return answer 
 
 # 2️⃣ 해시
 
