@@ -14,11 +14,10 @@ from collections import Counter
 
 v = [[1,4],[3,4],[3,10]]
 
-count_row = Counter([v[i][0] for i in range(len(v))])
-count_col = Counter([v[i][1] for i in range(len(v))])
-
-
-        
+count_row = Counter([points[0] for points in v])
+count_col = Counter([points[1] for points in v])
+   
+# 예: [(3, 2), (1, 1)]     
 print(count_row.most_common()[-1][0], count_col.most_common()[-1][0])
 
 # GPT 풀이 
