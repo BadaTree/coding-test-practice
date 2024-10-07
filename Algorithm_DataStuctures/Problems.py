@@ -7,3 +7,39 @@
 # • V의 각 원소는 점의 좌표를 나타내며, 좌표는 [x축 좌표, y축 좌표] 순으로 주어 집니다.
 # • 좌표값은 1 이상 10억 이하의 자연수입니다.
 # • 직사각형을 만드는 데 필요한 나머지 한 점의 좌표를 [X축 좌표, y축 좌표] 순으 로 담아 return 해주세요.
+
+# 행, 열 중에 값이 하나인 것 찾기
+
+from collections import Counter
+
+v = [[1,4],[3,4],[3,10]]
+
+count_row = Counter([v[i][0] for i in range(len(v))])
+count_col = Counter([v[i][1] for i in range(len(v))])
+
+
+        
+print(count_row.most_common()[-1][0], count_col.most_common()[-1][0])
+
+# GPT 풀이 
+
+def solution(v):
+    x_coords = [point[0] for point in v]
+    y_coords = [point[1] for point in v]
+    
+    # x 좌표와 y 좌표에서 고유한 값을 찾기
+    x = 0
+    y = 0
+    
+    for x_coord in x_coords:
+        x ^= x_coord  # XOR 연산을 사용하여 유일한 x 좌표 찾기
+        
+    for y_coord in y_coords:
+        y ^= y_coord  # XOR 연산을 사용하여 유일한 y 좌표 찾기
+    
+    return [x, y]
+
+# 예시
+v = [[1, 4], [3, 4], [3, 10]]
+result = solution(v)
+print(result)  # [1, 10]
