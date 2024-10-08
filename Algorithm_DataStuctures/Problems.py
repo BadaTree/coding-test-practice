@@ -9,7 +9,7 @@
 # • 직사각형을 만드는 데 필요한 나머지 한 점의 좌표를 [X축 좌표, y축 좌표] 순으 로 담아 return 해주세요.
 
 # 행, 열 중에 값이 하나인 것 찾기
-
+'''
 from collections import Counter
 
 v = [[1,4],[3,4],[3,10]]
@@ -42,3 +42,4 @@ def solution(v):
 v = [[1, 4], [3, 4], [3, 10]]
 result = solution(v)
 print(result)  # [1, 10]
+'''
