@@ -109,6 +109,15 @@ def solution(maps):
 # 2️⃣ 해시
 
 # 3️⃣ 정렬
+# [1] K번째 수 
+def solution(array, commands):
+    answer = []
+    
+    for start,end,k in commands:
+        answer.append(sorted(array[start-1:end])[k-1])
+    
+    return answer
+
 
 # 4️⃣ 완전 탐색
 
