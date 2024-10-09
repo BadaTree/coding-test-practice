@@ -142,6 +142,27 @@ def solution(numbers):
     
     return ''.join(numbers) if numbers != ['0']*len(numbers) else '0'
 
+# [3] H-index
+
+# O(N^2)
+def solution(citations):
+    result = 0
+    for h in range(len(citations)+1,1,-1):
+        if len([1 for citation in citations if citation >= h]) == h:
+            result = h
+            break
+    
+    return result
+
+# GPT  O(n log n)
+def solution(citations):
+    citations.sort(reverse=True)  # 인용 횟수를 내림차순으로 정렬
+    for i, citation in enumerate(citations):
+        if citation <= i:  # 인용 횟수가 인덱스보다 작아지면
+            return i  # 그 인덱스가 H-Index
+    return len(citations)  # 모든 논문이 인용된 경우
+
+
 
 # 4️⃣ 완전 탐색
 
