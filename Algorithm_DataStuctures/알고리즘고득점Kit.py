@@ -118,6 +118,30 @@ def solution(array, commands):
     
     return answer
 
+# [2] 가장 큰 수
+import itertools
+
+def solution(numbers):
+    answer = 0
+    # 모든 순열 생성
+    permutations_list = list(itertools.permutations(numbers))
+
+    # 각 순열을 문자열로 변환하여 이은 수 저장
+    for perm in permutations_list:
+        combined_number = int(''.join(map(str, perm)))  # 숫자들을 문자열로 변환하여 결합
+
+        if answer < combined_number:
+            answer = combined_number
+
+    return str(answer)
+
+# GPT 
+def solution(numbers):
+    numbers = list(map(str,numbers))
+    numbers.sort(key=lambda x: x*3,reverse= True)
+    
+    return ''.join(numbers) if numbers != ['0']*len(numbers) else '0'
+
 
 # 4️⃣ 완전 탐색
 
