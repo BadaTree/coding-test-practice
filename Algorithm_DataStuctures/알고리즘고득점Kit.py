@@ -105,6 +105,66 @@ def solution(maps):
     # 목표 지점에 도달할 수 없는 경우
     return -1
 
+# [3] 네트워크
+
+# NOTE :  다시 풀어야하는 문제 
+# 내 코드
+def DFS(computers,v, visited):
+    visited[v] = True
+    
+    for i ,network in enumerate(computers[v]):
+        if network and not visited[i]:
+            DFS(computers,i, visited)
+                
+    
+def solution(n, computers):
+    visited = [0]*n
+    answer = 0
+    for i in range(n):
+        # 방문하지 않은 컴퓨터가 있다면 방문
+        if not visited[i]:
+            DFS(computers,0, visited)
+            answer += 1
+            
+    return answer
+
+# GPT 
+def find(parent, x):
+    if parent[x] != x:
+        parent[x] = find(parent, parent[x])  # Path compression
+    return parent[x]
+
+def union(parent, rank, a, b):
+    rootA = find(parent, a)
+    rootB = find(parent, b)
+
+    if rootA != rootB:
+        # Union by rank
+        if rank[rootA] > rank[rootB]:
+            parent[rootB] = rootA
+        elif rank[rootA] < rank[rootB]:
+            parent[rootA] = rootB
+        else:
+            parent[rootB] = rootA
+            rank[rootA] += 1
+
+def solution(n, computers):
+    parent = [i for i in range(n)]  # 부모 초기화
+    rank = [0] * n  # 랭크 초기화
+
+    for i in range(n):
+        for j in range(i + 1, n):  # 대칭 행렬을 피하기 위해 j는 i+1부터 시작
+            if computers[i][j] == 1:
+                union(parent, rank, i, j)
+
+    # 서로 다른 부모를 가진 컴퓨터의 수를 세어 네트워크 개수 찾기
+    networks = set(find(parent, i) for i in range(n))
+    return len(networks)
+
+# 예시 실행
+print(solution(3, [[1, 1, 0], [1, 1, 0], [0, 0, 1]]))  # 2
+print(solution(3, [[1, 1, 0], [1, 1, 1], [0, 1, 1]]))  # 1
+
 
 # 2️⃣ 해시
 
@@ -174,6 +234,77 @@ def solution(citations):
 # 5️⃣ 스택 / 큐
 
 # 6️⃣ 힙 (Heap)
+#[1] 더 맵게
+import heapq
+
+def solution(scoville, K):
+    heapq.heapify(scoville)
+    mix_value = 0
+    
+    while scoville[0] < K :
+        if len(scoville) < 2 :
+            return -1
+        
+        first = heapq.heappop(scoville)
+        second = heapq.heappop(scoville)
+        
+        new_scoville = first + (second*2)
+        heapq.heappush(scoville,new_scoville)
+        
+        mix_value += 1
+    
+    return mix_value
+#[3] 이중우선순위 큐
+# NOTE: 다시 풀어야하는 문제
+# 바다
+import heapq
+
+def solution(operations):
+    queue = []
+    for operation in operations:
+        cmd, n = operation.split()
+        if cmd == 'I':
+            queue.append(int(n))
+        elif n == '1':
+            max_value = max(queue)
+            print(max_value,queue)
+            # queue.remove(max_value)
+        elif n == '-1':
+            print(queue,"**")
+            heapq.heapify(queue)
+            heapq.heappop(queue)
+            print(queue)
+    return  queue
+    # return [max(queue),min(queue)] if queue else [0,0]
+# GPT 
+def solution(operations):
+    queue = []
+    
+    for operation in operations:
+        cmd, num = operation.split()
+        num = int(num)
+
+        if cmd == 'I':
+            queue.append(num)
+            queue.sort()  # 삽입할 때마다 정렬
+        elif cmd == 'D':
+            if not queue:
+                continue
+            if num == 1:
+                queue.pop()  # 최댓값 삭제
+            elif num == -1:
+                queue.pop(0)  # 최솟값 삭제
+
+    # 결과 반환
+    if not queue:
+        return [0, 0]
+    else:
+        return [max(queue), min(queue)]
+
+# 예시 실행
+print(solution(["I 16", "I -5643", "D -1", "D 1", "D 1", "I 123", "D -1"]))  # [0, 0]
+print(solution(["I -45", "I 653", "D 1", "I -642", "I 45", "I 97", "D 1", "D -1", "I 333"]))  # [333, -45]
+
 
 # 7️⃣ 동적 계획법
 # 8️⃣ 그래프
