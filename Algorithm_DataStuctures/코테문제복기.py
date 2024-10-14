@@ -225,5 +225,7 @@ result = count_valid_pairs(a, b)
 print(f"총 {result}개의 순서쌍이 존재합니다.")
 
 # [2] 열기구 승하차 
+# MEMO: 설명 차후 추가
 
 # [3] 다익스트라 최단거리 알고리즘 (양방향 그래프)
+# MEMO: 설명 차후 추가
