@@ -28,10 +28,16 @@ print(dp[N])
 # 1, 2, 3 더하기
 import itertools
 
-def defind_permutation(nums):
-    permutation = itertools.permutations(nums)
-    print(set(permutation))
-defind_permutation([1,2,3,4])    
+data = [1, 2, 3]
+length = 2
+end = 
+# Generate permutations allowing repetition
+for i in range(1,5):
+    permutations = itertools.product(data, repeat=i)
+
+    for perm in permutations:
+        if sum(perm) == 4: 
+            print(perm) 
 
 # 카드 구매하기
 
