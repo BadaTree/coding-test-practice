@@ -25,24 +25,25 @@ print(dp[N])
 
 # 2×n 타일링 2
 
-# 1, 2, 3 더하기
+#[ ] 1, 2, 3 더하기
+# MEMO : 다시 풀 문제
 # 내 풀이 :  창의적이지만, 성능이 많이 떨어집니다.
-# import itertools
+import itertools
 
-# T = int(input())
-# data = [1, 2, 3]
+T = int(input())
+data = [1, 2, 3]
 
-# for _ in range(T):
-#     n = int(input())
-#     count = 0
-#     # Generate permutations allowing repetition
-#     for i in range(1,n+1):
-#         permutations = itertools.product(data, repeat=i)
+for _ in range(T):
+    n = int(input())
+    count = 0
+    # Generate permutations allowing repetition
+    for i in range(1,n+1):
+        permutations = itertools.product(data, repeat=i)
 
-#         for perm in permutations:
-#             if sum(perm) == n: 
-#                 count += 1
-#     print(count)
+        for perm in permutations:
+            if sum(perm) == n: 
+                count += 1
+    print(count)
 
 
 # GPT 
