@@ -5,7 +5,7 @@
 # 1로 만들기
 # N-> 1 의 최소 연산이 아니라 1-> N을 만드는데 최소 횟수만 사용하도록 연산
 # 1부터 N까지 세가지 연산을 이용해서 각 수를 만들 수 있는 최소 연산을 누적하여 최소 연산 값 찾기
-
+'''
 N = int(input())
 
 # dp 초기화
@@ -19,13 +19,19 @@ for i in range(2,N+1):
     if i % 3 == 0 :
         dp[i] = min (dp[i], dp[i//3]+1)
 print(dp[N])
-
+'''
 
 # 2×n 타일링
 
 # 2×n 타일링 2
 
 # 1, 2, 3 더하기
+import itertools
+
+def defind_permutation(nums):
+    permutation = itertools.permutations(nums)
+    print(set(permutation))
+defind_permutation([1,2,3,4])    
 
 # 카드 구매하기
 
