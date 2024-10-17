@@ -82,10 +82,58 @@ print(score_dict[score])
 
 
 # [ ] 2476 주사위 게임 \
-
+'''
 import sys
 
-input = sys.stdin.readlines()
+input = sys.stdin.read().strip().splitlines()
+n = int(input[0])
+final_award = 0 
 
-print(input)
+for i in range(1,n+1):
+    award = 0
+    a,b,c = map(int,input[i].split())
+    # 세 개가 모두 같은 눈일 때
+    if len(set([a,b,c])) == 1:
+        award = 10000 + a*1000
+    # 두 개가 모두 같은 눈일 때
+    elif len(set([a,b,c])) == 2:
+        same = 0
+        for i in (a,b,c):
+            same ^= i
+        award = 1000 + (a+b-same)*100
+    # 세 개가 모두 다른 눈일 때
+    else :
+        award = max([a,b,c])* 100 
 
+    if award > final_award :
+        final_award = award
+
+print(final_award)
+'''
+'''
+import sys
+
+input = sys.stdin.read().strip().splitlines()
+n = int(input[0])
+final_award = 0 
+
+for i in range(1,n+1):
+    award = 0
+    a,b,c = map(int,input[i].split())
+    # 세 개가 모두 같은 눈일 때
+    if a==b==c:
+        award = 10000 + a*1000
+    # 두 개가 모두 같은 눈일 때
+    elif a==b or b == c or a==c:
+        if a ==b or a==c :
+            award = 1000 + a*100
+        else : 
+            award = 1000 + b*100
+    # 세 개가 모두 다른 눈일 때
+    else :
+        award = max([a,b,c])* 100 
+        
+    final_award = max(final_award,award)
+
+print(final_award)
+'''
