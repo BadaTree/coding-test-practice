@@ -51,3 +51,11 @@ R1,S = map(int,input().split())
 
 print(S*2 - R1)
 '''
+
+# [ ] 10699 오늘 날짜
+'''
+from datetime import datetime, timedelta
+
+current_time = datetime.utcnow() + timedelta(hours=9)
+print(current_time.strftime("%Y-%m-%d"))
+'''
