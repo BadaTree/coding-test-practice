@@ -59,3 +59,33 @@ from datetime import datetime, timedelta
 current_time = datetime.utcnow() + timedelta(hours=9)
 print(current_time.strftime("%Y-%m-%d"))
 '''
+
+# [ ] 2914 저작권
+# 앨범에 수록된 수 A, I = 멜로디 수 / 수록된 수 (A)가 주어질 때, 최소한의 멜로디의 수 A*(I-1)+1
+'''
+A, I = map(int, input().split())
+
+print(A*(I-1)+1)
+'''
+
+# [ ] 2754 학점 계산 
+'''
+score_dict = {'A+': 4.3, 'A0': 4.0, 'A-': 3.7,
+'B+': 3.3, 'B0': 3.0, 'B-': 2.7,
+'C+': 2.3, 'C0': 2.0, 'C-': 1.7,
+'D+': 1.3, 'D0': 1.0, 'D-': 0.7,
+'F': 0.0}
+
+score = input()
+print(score_dict[score])
+'''
+
+
+# [ ] 2476 주사위 게임 \
+
+import sys
+
+input = sys.stdin.readlines()
+
+print(input)
+
