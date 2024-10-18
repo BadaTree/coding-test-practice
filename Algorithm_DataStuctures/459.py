@@ -137,3 +137,90 @@ for i in range(1,n+1):
 
 print(final_award)
 '''
+
+# [ ] 10039 평균 점수 
+'''
+total = 0
+
+for _ in range(5):
+    score = int(input())
+    total += score  if score >= 40 else 40
+print(total //5)
+'''
+
+# [ ] 5063 TGN
+'''
+import sys
+
+input = sys.stdin.read().splitlines()
+
+N = int(input[0])
+
+for i in range(1,N+1):
+    case = list(map(int,input[i].split()))
+    
+    if case[0] < case[1] - case[2]:
+        print("advertise")
+    elif case[0] > case[1] - case[2]:
+        print("do not advertise")
+    else : 
+        print("does not matter")
+'''        
+
+# [ ] 10886 0 = not cut / 1 =cute
+'''
+import sys
+
+input = sys.stdin.read().splitlines()
+
+N = int(input[0])
+cute_votes = 0
+
+for i in range(1, N+1):
+    opinion = input[i]
+    
+    cute_votes += 1 if opinion == '1' else -1
+    
+print("Junhee is cute!" if cute_votes > 0 else "Junhee is not cute!")
+'''
+# [ ] 5717 상근이의 친구들
+
+'''
+while  True :
+    friends = input()
+    
+    if friends == "0 0":
+        break
+    
+    M, F = map(int,friends.split())
+    print(M+F)
+'''
+
+# [ ] 9610 사분면
+import sys
+
+input = sys.stdin.read().splitlines()
+
+N = int(input[0])
+points = [0]* 5
+
+for i in range(1,N+1):
+    x,y = map(int, input[i].split())
+    
+    if x == 0 or y == 0 :
+        points[0] += 1
+    elif x > 0 and y > 0 :
+        points[1] += 1
+    elif x < 0 and y > 0 :
+        points[2] += 1
+    elif x < 0 and y < 0 :
+        points[3] += 1
+    elif x > 0 and y < 0 :
+        points[4] += 1
+        
+for i in range(1,5):
+    print(f"Q{i}: {points[i]}")
+
+print(f"AXIS: {points[0]}")
+
+ 
