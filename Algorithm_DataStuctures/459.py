@@ -197,6 +197,7 @@ while  True :
 '''
 
 # [ ] 9610 사분면
+'''
 import sys
 
 input = sys.stdin.read().splitlines()
@@ -223,4 +224,153 @@ for i in range(1,5):
 
 print(f"AXIS: {points[0]}")
 
- 
+'''
+
+# [ ] 10162 전자레인지
+'''
+T = int(input())
+A,B,C = 0,0,0
+
+if T >= 300 :
+    cnt = T // 300
+    T = T % 300
+    A += cnt
+
+if T >= 60 :
+    cnt = T // 60
+    T = T % 60
+    B += cnt
+    
+if T >= 10 :
+    cnt = T // 10
+    T = T % 10
+    C += cnt
+    
+print (f"{A} {B} {C}" if T == 0 else -1)
+
+# GPT
+T = int(input())
+A, B, C = 0, 0, 0
+
+if T >= 300:
+    A = T // 300
+    T %= 300
+
+if T >= 60:
+    B = T // 60
+    T %= 60
+
+if T >= 10:
+    C = T // 10
+    T %= 10
+
+# 결과 출력
+if T == 0:
+    print(f"{A} {B} {C}")
+else:
+    print(-1)
+'''
+
+# [ ] 10214 Baseball
+'''
+import sys
+
+scores = sys.stdin.read().splitlines()
+
+T = int(scores[0])
+Y = 0
+K = 0
+
+for i in range(1,T+1):
+    y,k = map(int, scores[i].split())
+    
+    Y += y 
+    K += k
+
+if Y == K :
+    print("Draw")
+else:
+    if Y > K :
+        print("Yonsei")
+    else :
+        print("Korea")
+'''
+
+# GPT 
+'''
+import sys
+
+# 입력 전체를 읽고 각 줄을 나눔
+scores = sys.stdin.read().splitlines()
+
+# 첫 번째 줄은 테스트 케이스의 수
+T = int(scores[0])
+
+# 인덱스를 사용해서 각 테스트 케이스의 데이터를 처리
+index = 1
+for _ in range(T):
+    Y, K = 0, 0
+    # 9회차 점수 읽기
+    for _ in range(9):
+        y, k = map(int, scores[index].split())
+        Y += y
+        K += k
+        index += 1
+    
+    # 결과 출력
+    if Y > K:
+        print("Yonsei")
+    elif Y < K:
+        print("Korea")
+    else:
+        print("Draw")
+'''
+
+
+# [ ] 10103 주사위 게임
+'''
+import sys
+
+scores = sys.stdin.read().splitlines()
+
+chang = 100
+sang = 100
+
+R = int(scores[0])
+
+for i in range(1,R+1):
+    c,s = map(int,scores[i].split())
+    if c < s :
+        chang -= s
+    elif c > s :
+        sang -= c
+        
+print(chang)
+print(sang)
+'''
+
+# [ ] 10102 개표
+'''
+V = int(input())
+votes = input()
+
+A = votes.count('A')
+B = V - A
+if A == B :
+    print('Tie')
+elif A > B :
+    print('A')
+else :
+    print('B')
+'''
+
+# [ ] 7567 그릇 
+
+bowl = input()
+height = 10
+for i in range(1,len(bowl)):
+    if bowl[i-1] == bowl[i]:
+        height += 5
+    else :
+        height += 10
+print(height)
