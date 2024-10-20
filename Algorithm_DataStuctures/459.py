@@ -365,7 +365,7 @@ else :
 '''
 
 # [ ] 7567 그릇 
-
+'''
 bowl = input()
 height = 10
 for i in range(1,len(bowl)):
@@ -374,3 +374,25 @@ for i in range(1,len(bowl)):
     else :
         height += 10
 print(height)
+'''
+
+# [ ] 5355 화성 수학
+
+import sys
+
+input = sys.stdin.read().splitlines()
+T = int(input[0])
+
+for i in range(1,T+1):
+    cal_list = input[i].split()
+    n = float(cal_list[0])
+    result = n
+    
+    for j in cal_list:
+        if j == '@':
+            result *= 3
+        elif j == '%':
+            result += 5
+        elif j == '#':
+            result -= 7
+    print(f"{result:.2f}")
