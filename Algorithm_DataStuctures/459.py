@@ -377,7 +377,7 @@ print(height)
 '''
 
 # [ ] 5355 화성 수학
-
+'''
 import sys
 
 input = sys.stdin.read().splitlines()
@@ -396,3 +396,75 @@ for i in range(1,T+1):
         elif j == '#':
             result -= 7
     print(f"{result:.2f}")
+'''
+
+# [ ] 8958 quiz
+'''
+import sys
+
+quiz = sys.stdin.read().splitlines()
+T = int(quiz[0])
+
+for i in range(1, T+1):
+    result = 0
+    connect = 0
+    
+    for j in quiz[i]:
+        if j == 'O':
+            connect += 1
+        else : 
+            connect = 0
+        result += connect
+        
+    print(result)
+'''
+
+# [ ] 11557 Yangjojang of The Year
+
+import sys 
+
+input = sys.stdin.read().splitlines()
+T = int(input[0])
+
+index = 1
+for i in range(T):
+    N = int(input[index])
+    univ = ''
+    drinking = 0
+    index += 1
+    
+    for j in range(index, index + N):
+        u,d = input[j].split()
+        if int(d) > drinking :
+            univ = u
+            drinking = int(d)
+    index += N
+    
+    print(univ)
+        
+# GPT 
+# MEMO : 풀이 다시 이해
+import sys
+
+input = sys.stdin.read().splitlines()
+T = int(input[0])  # Number of test cases
+
+index = 1
+for _ in range(T):
+    N = int(input[index])  # Number of schools in this test case
+    index += 1
+    
+    # Read the school names and drinking values, store them as tuples
+    schools = [(input[j].split()[0], int(input[j].split()[1])) for j in range(index, index + N)]
+    
+    # Find the school with the maximum drinking value
+    univ = max(schools, key=lambda x: x[1])[0]
+    
+    # Update index to move to the next test case
+    index += N
+    
+    # Output the school name with the highest drinking value
+    print(univ)
+
+    
+    
