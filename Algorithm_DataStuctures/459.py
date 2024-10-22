@@ -420,7 +420,7 @@ for i in range(1, T+1):
 '''
 
 # [ ] 11557 Yangjojang of The Year
-
+'''
 import sys 
 
 input = sys.stdin.read().splitlines()
@@ -465,6 +465,18 @@ for _ in range(T):
     
     # Output the school name with the highest drinking value
     print(univ)
+'''
 
-    
-    
+# [ ] 1789 수들의 합
+
+S = int(input())  # 입력받은 값 S
+N = 0  # 자연수 개수
+total = 0  # 자연수들의 합
+
+# 1부터 차례대로 더하면서 합이 S를 넘지 않도록 한다
+while total <= S:
+    N += 1
+    total += N
+
+# 마지막으로 더한 값이 S를 넘었으므로, N-1이 정답
+print(N - 1)
