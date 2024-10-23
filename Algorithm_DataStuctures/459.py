@@ -468,7 +468,7 @@ for _ in range(T):
 '''
 
 # [ ] 1789 수들의 합
-
+'''
 S = int(input())  # 입력받은 값 S
 N = 0  # 자연수 개수
 total = 0  # 자연수들의 합
@@ -480,3 +480,14 @@ while total <= S:
 
 # 마지막으로 더한 값이 S를 넘었으므로, N-1이 정답
 print(N - 1)
+
+'''
+
+# [ ] 2935 소음 
+'''
+A = int(input())
+oper = input()
+B = int(input())
+
+print( A*B if oper == '*' else A+B)
+'''
